@@ -1,24 +1,60 @@
 var words = require("./words.js")
+var inquirer = require('inquirer');
+
+var createdWord = new Word();
+
+var questions = [{
+name: "letter_guessed",
+message: "Please guess a letter"
+
+}]
+gameStarter();
+
+function gameStarter(){
+  inquirer.prompt(
+    
+     questions
+     
+   )
+   .then(function(data){
+     
+     createdWord.bobContains(data.letter_guessed);
+     createdWord.displayWord();
+     //still need to check if we are done
+     if (word.finished()){
+       return
+     }
+     gameStarter();
+   })
+
+}
 
 
-var letter;
-var lettersArray = [];
-var underScore = "_";
 
 function Word(randomWord){
     
    randomWord = words[Math.floor(Math.random() * words.length)];
-    // this.bobRandomWord = words[Math.floor(Math.random() * words.length)];
-    // this.bobContains = function(letter){}
-    // this.displayWord = function(){}
-
-    letter = randomWord.split("");
-    var letterLength = letter.length;
-    for (var i = 0; i < letterLength; i++){
-       lettersArray.push(underScore);
+    
+    this.bobContains = function(letter){}
+    // this.displayWord = function(){} need this for this.finished
+    this.lettersArray = [];
+    for (var i = 0; i < randomWord.length; i++){
+      console.log(randomWord[i]);
+      this.lettersArray.push(new Letter(randomWord[i]));
     }
-    console.log(letter);
-    console.log(lettersArray);
+    this.finished = function(){
+      
+    }
+    this.displayWord = function() {
+      // iterate through the Letters in our array
+      
+      
+      // call .display() method on each of our Letters
+      // put them all together, with spaces in between
+      // return the whole thing
+    }
+    
+    console.log(this.lettersArray);
    
     
 }
@@ -28,7 +64,7 @@ function Word(randomWord){
 function Letter (character){
       this.guessed = false;
       this.character = character;
-      this.display = function(){
+      this.toString = function(){
      
     
 
@@ -57,15 +93,7 @@ function Letter (character){
 
 }
 
-this.displayWord = function() {
-  // iterate through the Letters in our array
-  
-  
-  // call .display() method on each of our Letters
-  // put them all together, with spaces in between
-  // return the whole thing
-}
 
 
-Letter();
-Word();
+
+
