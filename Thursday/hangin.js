@@ -1,6 +1,7 @@
+// this is where I am importing my other files and npm packages..
 var words = require("./words.js")
 var inquirer = require('inquirer');
-
+//This is where I am a variable to pass in later
 var createdWord = new Word();
 
 var questions = [{
